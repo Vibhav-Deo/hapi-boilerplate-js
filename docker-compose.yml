@@ -1,0 +1,14 @@
+version: '2.1'
+services:
+  app:
+    container_name: node-server
+    build:
+      context: './'
+      dockerfile: 'Dockerfile'
+    restart: always
+    environment:
+      - NODE_ENV=test
+      - DEBUG=app:*,-app:nDispatcher:REMOVED
+    command: bash -c "nodemon server.js"
+    ports:
+      - 8000:8000
